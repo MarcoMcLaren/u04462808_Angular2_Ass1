@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../environment';
 import { Course } from '../models/courses';
 
@@ -8,6 +8,7 @@ import { Course } from '../models/courses';
   providedIn: 'root'
 })
 export class CoursesService {
+
 
   baseApiUrl: string = environment.baseApiUrl;
   
@@ -27,5 +28,9 @@ export class CoursesService {
 
   deleteCourse(id: number): Observable<Course> {
     return this.http.delete<Course>(this.baseApiUrl + 'api/courses/delete/' + id);
+  }
+
+  updateCourse(id: number, updateCourse: Course): Observable<Course> {
+    return this.http.put<Course>(this.baseApiUrl + 'api/courses/update/' + id, updateCourse);
   }
 }

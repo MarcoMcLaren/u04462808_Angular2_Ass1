@@ -16,7 +16,8 @@
             <input type="text" class="form-control" id="duration" name="duration" [(ngModel)] = "addCourseRequest.duration">
           </div>
           <br>
-          <button type="submit" class="btn btn-primary">Add Course</button>
+          <button class="btn btn-primary" (click)="addCourse()" routerLink="/courses" >Add</button>
+
         </form>
       </div>
     </div>

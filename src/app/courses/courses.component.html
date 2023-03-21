@@ -1,26 +1,33 @@
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Duration</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let course of courses">
-        <td>{{course.moduleId}}</td>
-        <td>{{ course.name }}</td>
-        <td>{{ course.description }}</td>
-        <td>{{ course.duration }}</td>
-        <td><a [routerLink]="['/edit-course', course.moduleId]" class="btn btn-success">Edit</a>
-        </td>
-        <td><button type="button" class="btn btn-danger" (click)="deleteCourse(course.moduleId)">Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 *ngIf="!courses">No Courses</h3>
-  
 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Duration</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of courses">
+      <td>{{course.moduleId}}</td>
+      <td>{{ course.name }}</td>
+      <td>{{ course.description }}</td>
+      <td>{{ course.duration }}</td>
+      <td><a [routerLink]="['/edit-course', course.moduleId]" class="btn btn-success">Edit</a>
+      </td>
+      <td><button type="button" class="btn btn-danger" (click)="deleteCourse(course.moduleId)">Delete</button></td>
+    </tr>
+    <tr *ngIf="newlyAddedCourse">
+      <td>{{ newlyAddedCourse.moduleId }}</td>
+      <td>{{ newlyAddedCourse.name }}</td>
+      <td>{{ newlyAddedCourse.description }}</td>
+      <td>{{ newlyAddedCourse.duration }}</td>
+      <td><a [routerLink]="['/edit-course', newlyAddedCourse.moduleId]" class="btn btn-success">Edit</a></td>
+      <td><button type="button" class="btn btn-danger" (click)="deleteCourse(newlyAddedCourse.moduleId)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+<h3 *ngIf="!courses && !newlyAddedCourse">No Courses</h3>

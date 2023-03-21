@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Course } from '../models/courses';
 import { CoursesService } from '../services/courses.service';
@@ -8,7 +8,9 @@ import { CoursesService } from '../services/courses.service';
   templateUrl: './create-courses.component.html',
   styleUrls: ['./create-courses.component.css']
 })
-export class CreateCoursesComponent implements OnInit{
+export class CreateCoursesComponent implements OnInit {
+
+  @Output() courseAdded = new EventEmitter<Course>();
 
   addCourseRequest: Course = {
     moduleId: 0,
@@ -18,18 +20,17 @@ export class CreateCoursesComponent implements OnInit{
   }
 
   constructor(private courseService: CoursesService, private router: Router) { }
-    ngOnInit(): void {
 
-    }
+  ngOnInit(): void {}
 
-    addCourse() { //new method created to add course
-      console.log(this.addCourseRequest);
-      this.courseService.addCourse(this.addCourseRequest).subscribe({
-        next: (course) => {
-          console.log(course); //displays course added in console
-          this.router.navigate(['']); //goes back to course list when added
-        }
-      })
-    }
-
+  addCourse() {
+    console.log(this.addCourseRequest);
+    this.courseService.addCourse(this.addCourseRequest).subscribe({
+      next: (course) => {
+        console.log(course);
+        this.courseAdded.emit(course); // emit courseAdded event
+        this.router.navigate(['/courses']);
+      }
+    })
+  }
 }
