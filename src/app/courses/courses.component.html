@@ -1,4 +1,10 @@
 
+<div class="row mb-3">
+  <div class="col-md-6">
+    <input type="text" class="form-control" placeholder="Search by Name" [(ngModel)]="searchName" (ngModelChange)="onSearchNameChanged($event)">
+  </div>
+</div>
+
 <table class="table table-striped">
   <thead>
     <tr>

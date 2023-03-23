@@ -11,7 +11,7 @@ import { CoursesService } from '../services/courses.service';
 export class CoursesComponent implements OnInit {
 
   courses: Course[] = [];
-  
+  searchName: string = '';
 
   constructor(private coursesService: CoursesService, private router: Router) { }
 
@@ -19,16 +19,20 @@ export class CoursesComponent implements OnInit {
     this.getCourses();
   }
 
+  //GET ALL COURSES to display in table
   getCourses() {
     this.coursesService.getCourses().subscribe({
       next: (courses) => {
+        if (this.searchName.trim() !== '') {
+          courses = courses.filter(course => course.name.toLowerCase().indexOf(this.searchName.toLowerCase()) !== -1);
+        }
         this.courses = courses;
-        console.log(this.courses);
       },
-      error: err => console.log(err)
+      error: err => console.log(err)  
     })
   }
 
+  //DELETE COURSES by ID
   deleteCourse(id: number) {
     this.coursesService.deleteCourse(id).subscribe({
       next: (response) => {
@@ -37,6 +41,12 @@ export class CoursesComponent implements OnInit {
       },
       error: err => console.log(err)
     })
+  }
+
+    //Search for COURSES by name
+  onSearchNameChanged(name: string) {
+    this.searchName = name;
+    this.getCourses();
   }
 
   onCourseAdded(course: Course) { 

@@ -1,0 +1,11 @@
+.navbar-nav {
+    margin-right: auto;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+  
+  .form-control {
+    border-radius: 0;
+  }
