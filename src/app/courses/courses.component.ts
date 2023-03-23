@@ -18,10 +18,6 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     this.getCourses();
   }
-  onCourseAdded(course: Course) { 
-    this.courses.push(course); // add newly added course to courses array
-    window.location.reload();
-  }
 
   getCourses() {
     this.coursesService.getCourses().subscribe({
@@ -43,5 +39,8 @@ export class CoursesComponent implements OnInit {
     })
   }
 
-  
+  onCourseAdded(course: Course) { 
+    this.courses.push(course); // add newly added course to courses array
+    window.location.reload();
+  }
 }
