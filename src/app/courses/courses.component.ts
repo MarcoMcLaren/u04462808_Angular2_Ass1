@@ -11,12 +11,16 @@ import { CoursesService } from '../services/courses.service';
 export class CoursesComponent implements OnInit {
 
   courses: Course[] = [];
-  newlyAddedCourse: Course | undefined;
+  
 
   constructor(private coursesService: CoursesService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCourses();
+  }
+  onCourseAdded(course: Course) { 
+    this.courses.push(course); // add newly added course to courses array
+    window.location.reload();
   }
 
   getCourses() {
@@ -39,8 +43,5 @@ export class CoursesComponent implements OnInit {
     })
   }
 
-  onCourseAdded(course: Course) {
-    this.newlyAddedCourse = course; // set newly added course to newlyAddedCourse property
-    this.courses.push(course); // add newly added course to courses array
-  }
+  
 }

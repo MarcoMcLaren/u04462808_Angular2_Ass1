@@ -10,9 +10,8 @@ import { CoursesService } from '../services/courses.service';
 })
 export class EditCoursesComponent implements OnInit {
 
-  // courseId: number | null = null;
   moduleId: number | null = null;
-  
+
   course: Course = {
     moduleId: 0,
     name: '',
